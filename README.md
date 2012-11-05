@@ -27,7 +27,7 @@ Example
 1 execution per 1000 milliseconds:
 
 ```javascript
-var Trickle = require('./lib/trickle').Trickle;
+var Trickle = require('timetrickle').Trickle;
 
 var trickle = new Trickle(1, 1000);
 
