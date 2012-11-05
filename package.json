@@ -1,7 +1,7 @@
 {
-  "name": "trickle",
-  "description": "",
-  "keywords" : [ "throttle", "trickle" ], 
+  "name": "timetrickle",
+  "description": "A time-based execution limiter",
+  "keywords" : [ "throttle", "trickle", "flow control", "flow", "api", "limit", "time" ], 
   "version": "0.0.1",
   "homepage": "http://maxkueng.com/node-trickle",
   "repository": {

@@ -11,6 +11,16 @@ code is asynchronous, it could happen that we send 500 requests within
 half a second. Trickle prevents this from happening by keeping our
 functions and executing them when the time is right.
 
+Installation
+------------
+
+Note: trickle is called "timetrickle" on [npm][npm] because someone has 
+occupied the name before I had a chance.
+
+    npm install timetrickle
+
+Or add it to your project dependencies in your `package.json`.
+
 Example
 --------
 
@@ -32,3 +42,5 @@ for (var i = 0; i < 10; i++) {
 ```
 
 The above code will output "ok 0", "ok 1", ..."ok 9", one line per second.
+
+[npm]: https://npmjs.org/
