@@ -2,7 +2,7 @@
   "name": "timetrickle",
   "description": "A time-based execution limiter",
   "keywords" : [ "throttle", "trickle", "rate limit", "flow control", "flow", "api", "limit", "time" ], 
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/maxkueng/node-trickle",
   "repository": {
     "type": "git",
