@@ -1,46 +1,51 @@
 Trickle
 =======
 
-For node.js
+Trickle limits function executions based on time. It lets you define the
+number of executions per a certain amount of milliseconds.
 
-Trickle is to limit executions to a certain amount of executions within
-a certain amount of time. 
-
-For example, some APIs allow only 1 request per second. Since JavaScript
-code is asynchronous, it could happen that we send 500 requests within
-half a second. Trickle prevents this from happening by keeping our
-functions and executing them when the time is right.
+This is particularly useful to obey an API provider's rate limit, for
+example.
 
 Installation
 ------------
 
-Note: trickle is called "timetrickle" on [npm][npm] because someone has 
-occupied the name before I had a chance.
+Note: trickle is called "timetrickle" on [npm](https://npmjs.org/package/timetrickle) 
+because someone has occupied the name before I had a chance.
 
-    npm install timetrickle
-
-Or add it to your project dependencies in your `package.json`.
+```bash
+npm install timetrickle --save
+```
+or manually add it to your package.json
 
 Example
 --------
 
-1 execution per 1000 milliseconds:
-
 ```javascript
-var Trickle = require('timetrickle').Trickle;
+var trickle = require('timetrickle');
+    start = +Date.now();
 
-var trickle = new Trickle(1, 1000);
+// Helper function to show the time difference
+function since (time) { return Math.round((time - start) / 1000) + 's'; }
 
-for (var i = 0; i < 10; i++) {
-	(function (_i) {
-		trickle.trickle(1, function (error) {
-			if (error) { console.log(error); return; }
-			console.log('ok ' + _i);
-		});
-	})(i);
-}
+// Limit once per second
+var limit = trickle(1, 1000);
+
+limit(function () {
+    console.log('I am doing an API call here', since(+Date.now()));
+});
+
+limit(function () {
+    console.log('I am doing another API call here', since(+Date.now()));
+});
+
+limit(function () {
+    console.log('I am doing an API call here again', since(+Date.now()));
+});
 ```
 
-The above code will output "ok 0", "ok 1", ..."ok 9", one line per second.
+Will output:
 
-[npm]: https://npmjs.org/
+    I am doing an API call here 0s
+    I am doing an API call here again 1s
+    I am doing another API call here 2s
