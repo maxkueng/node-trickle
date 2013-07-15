@@ -35,7 +35,7 @@ function Trickle (requestsPerInterval, interval) {
 			}
 
 			t.availableRequests -= requests;
-			callback();
+			process.nextTick(callback);
 		}
 	};
 
