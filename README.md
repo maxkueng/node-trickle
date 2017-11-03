@@ -1,6 +1,8 @@
 Trickle
 =======
 
+**If you're looking for a promise-based alternative to this module check out [wyt](https://github.com/maxkueng/wyt).**
+
 Trickle limits function executions based on time. It lets you define the
 number of executions per a certain amount of milliseconds.
 
